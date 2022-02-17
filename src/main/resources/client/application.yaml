@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: service-client
+  main:
+    web-application-type: none
+
+logging:
+  config: classpath:client/logback-spring.xml
+
+wiremock:
+  url: http://localhost:8080
+
