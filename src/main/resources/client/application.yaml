@@ -7,6 +7,7 @@ spring:
 logging:
   config: classpath:client/logback-spring.xml
 
-wiremock:
-  url: http://localhost:8080
+intercept:
+  wiremock:
+    url: http://localhost:8080
 

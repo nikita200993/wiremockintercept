@@ -12,9 +12,11 @@ import org.springframework.context.annotation.Bean;
 public class ServiceClientRunner {
 
     private final ServiceClient serviceClient;
+    private final Service2Client service2Client;
 
-    public ServiceClientRunner(ServiceClient serviceClient) {
+    public ServiceClientRunner(ServiceClient serviceClient, Service2Client service2Client) {
         this.serviceClient = serviceClient;
+        this.service2Client = service2Client;
     }
 
     public static void main(String[] args) {
@@ -26,6 +28,7 @@ public class ServiceClientRunner {
         return (args) -> {
             System.out.println(serviceClient.sum(2, 2));
             System.out.println(serviceClient.sum(1, 2));
+            System.out.println(service2Client.mult(2, 3));
         };
     }
 }

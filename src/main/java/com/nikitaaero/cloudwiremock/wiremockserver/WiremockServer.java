@@ -2,10 +2,12 @@ package com.nikitaaero.cloudwiremock.wiremockserver;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.matching.EqualToPattern;
-import com.github.tomakehurst.wiremock.matching.StringValuePattern;
+import com.github.tomakehurst.wiremock.matching.RegexPattern;
+import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import com.github.tomakehurst.wiremock.standalone.WireMockServerRunner;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.okJson;
 
 public class WiremockServer {
 
@@ -13,11 +15,11 @@ public class WiremockServer {
         WireMockServerRunner.main(args);
         var wireMock = new WireMock(8080);
         wireMock.register(
-                get("/service/sum")
+                get(new UrlPattern(new RegexPattern("/service/sum\\?a=\\d+&b=\\d+"), true))
                         .withQueryParam("a", new EqualToPattern("1"))
                         .withQueryParam("b", new EqualToPattern("2"))
                         .willReturn(
-                                okJson("3")
+                                okJson("7")
                         )
         );
     }
